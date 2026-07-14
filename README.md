@@ -30,16 +30,14 @@ The vulnerable code is located within the `cstecgi.cgi` binary, where the suppli
 
 ![](images/img_3.png)
 
-![](images/img_4.png)
-
 By overwriting the saved return address, control flow was redirected to existing functions within the binary. This was demonstrated by invoking a `sleep(2)` call (confirming reliable control of the instruction pointer through a measurable delay in the device's response), the system reboot routine, the session logout function, and the log-clearing routine.
+
+![](images/img_4.png)
 
 ![](images/img_5.png)
 
-![](images/img_6.png)
-
 Control flow was further redirected to the routine responsible for starting the Telnet service, enabling Telnet on the device.
 
-![](images/img_7.png)
+![](images/img_6.png)
 
 As a result, an authenticated attacker with network access to the target device can hijack the execution flow of the `cstecgi.cgi` process and execute arbitrary code paths within the binary, compromising the confidentiality, integrity, and availability of the device.
